@@ -84,7 +84,7 @@ function activate(context) {
         }
 
         var text = activeEditor.document.getText();
-        var mathes = {}, match;
+        var matches = {}, match;
         while (match = pattern.exec(text)) {
             var startPos = activeEditor.document.positionAt(match.index);
             var endPos = activeEditor.document.positionAt(match.index + match[0].length);
@@ -97,10 +97,10 @@ function activate(context) {
                 matchedValue = matchedValue.toUpperCase();
             }
 
-            if (mathes[matchedValue]) {
-                mathes[matchedValue].push(decoration);
+            if (matches[matchedValue]) {
+                matches[matchedValue].push(decoration);
             } else {
-                mathes[matchedValue] = [decoration];
+                matches[matchedValue] = [decoration];
             }
 
             if (keywordsPattern.trim() && !decorationTypes[matchedValue]) {
@@ -112,7 +112,7 @@ function activate(context) {
             if (!isCaseSensitive) {
                 v = v.toUpperCase();
             }
-            var rangeOption = settings.get('isEnable') && mathes[v] ? mathes[v] : [];
+            var rangeOption = settings.get('isEnable') && matches[v] ? matches[v] : [];
             var decorationType = decorationTypes[v];
             activeEditor.setDecorations(decorationType, rangeOption);
         });
