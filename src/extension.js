@@ -24,7 +24,7 @@ function activate(context) {
         settings.update('isEnable', !settings.get('isEnable'), true).then(function () {
             triggerUpdateDecorations();
         });
-    }))
+    }));
 
     context.subscriptions.push(vscode.commands.registerCommand('todohighlight.listAnnotations', function () {
         if (keywordsPattern.trim()) {
@@ -115,7 +115,7 @@ function activate(context) {
             var rangeOption = settings.get('isEnable') && mathes[v] ? mathes[v] : [];
             var decorationType = decorationTypes[v];
             activeEditor.setDecorations(decorationType, rangeOption);
-        })
+        });
     }
 
     function init(settings) {
@@ -141,7 +141,7 @@ function activate(context) {
             assembledData = util.getAssembledData(settings.get('keywords'), customDefaultStyle, isCaseSensitive);
             Object.keys(assembledData).forEach((v) => {
                 if (!isCaseSensitive) {
-                    v = v.toUpperCase()
+                    v = v.toUpperCase();
                 }
 
                 var mergedStyle = Object.assign({}, {
