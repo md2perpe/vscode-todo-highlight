@@ -161,10 +161,7 @@ function activate(context) {
             }).join('|');
         }
 
-        pattern = new RegExp(pattern, 'gi');
-        if (isCaseSensitive) {
-            pattern = new RegExp(pattern, 'g');
-        }
+        pattern = new RegExp(pattern, isCaseSensitive ? 'g' : 'gi');
 
     }
 
